@@ -1,18 +1,18 @@
 // Initial state
 export const initialState = {
-  userName: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
   isAuthenticated: false,
-  isLoading: false,
 }
 // Actions
-export const ON_CHANGE = 'AuthState/ON_CHANGE'
-export const ON_LOGIN = 'AuthState/ON_LOGIN'
-export const ON_RESET = 'AuthState/ON_RESET'
-export const ON_REQUEST = 'AuthState/ON_REQUEST'
-export const ON_RESPONSE = 'AuthState/ON_RESPONSE'
+export const ON_SET_AUTHENTICATION = 'AuthState/ON_SET_AUTHENTICATION'
+export const ON_REMOVE_AUTHENTICATION = 'AuthState/ON_REMOVE_AUTHENTICATION'
+
+// ACTION CREATORS
+export const onSetAuthentication = () => ({ type: ON_SET_AUTHENTICATION })
+
+export const onRemoveAuthentication = () => {
+  localStorage.removeItem('token')
+  return { type: ON_REMOVE_AUTHENTICATION }
+}
 
 // Reducer
 export default (state = initialState, action = {}) => {
@@ -22,28 +22,16 @@ export default (state = initialState, action = {}) => {
         ...state,
         isAuthenticated: localStorage.getItem('token') ? true : false,
       }
-    case ON_CHANGE:
-      const { field, value } = action.payload
-      return { ...state, [field]: value }
-
-    case ON_LOGIN:
+    case ON_SET_AUTHENTICATION:
       return {
         ...state,
         isAuthenticated: true,
       }
-    case ON_REQUEST:
+
+    case ON_REMOVE_AUTHENTICATION:
       return {
         ...state,
-        isLoading: true,
-      }
-    case ON_RESPONSE:
-      return {
-        ...state,
-        isLoading: false,
-      }
-    case ON_RESET:
-      return {
-        ...initialState,
+        isAuthenticated: false,
       }
     default:
       return state
@@ -51,11 +39,5 @@ export default (state = initialState, action = {}) => {
 }
 
 // Selectors
-export const selectName = ({ authentication }) => authentication.userName
-export const selectEmail = ({ authentication }) => authentication.email
-export const selectPassword = ({ authentication }) => authentication.password
-export const selectConfirmPassword = ({ authentication }) =>
-  authentication.confirmPassword
 export const selectIsAuthenticated = ({ authentication }) =>
   authentication.isAuthenticated
-export const selectLoading = ({ authentication }) => authentication.isLoading

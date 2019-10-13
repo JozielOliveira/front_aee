@@ -6,15 +6,18 @@ import { Loading } from '../../../components'
 import { isRequiredMessage, isEmail} from '../../../constants'
 import { useStyles } from './styles'
 
-export const LoginView =  ({ onLogin, onLoginResult }) => {
+export const LoginView =  ({ onLogin, onLoginResult, onSetAuthentication }) => {
   const [state, setState] = useState({ email: '', password: '' })
 
   const handleChange = name => event => setState({ ...state, [name]: event.target.value})
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
+    
     const { email, password } = state
-    onLogin({ variables: { email, password }})
+    const data = await onLogin({ variables: { email, password }})
+
+    if (data) onSetAuthentication()
   }
 
   const classes = useStyles()
@@ -74,12 +77,3 @@ export const LoginView =  ({ onLogin, onLoginResult }) => {
       </main>
   )
 }
-
-// const onResponse = (cache, { data: { login } }) => {
-//   if(login.token !== 'false'){
-//     localStorage.setItem('token', login.token)
-//     history.push('/main/guiches')
-//   } else {
-//     onOpenAlert({ variant: 'error', message: 'Usuário ou senha inválida' })
-//   }
-// }
