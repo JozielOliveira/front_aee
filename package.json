@@ -1,11 +1,31 @@
 {
-  "name": "front",
+  "name": "aee-front",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.1.2",
+    "@material-ui/core": "^4.5.0",
+    "@material-ui/icons": "^4.4.3",
+    "@webhotelier/webpack-fast-refresh": "^1.0.6",
+    "apollo-boost": "^0.4.4",
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-link": "^1.2.13",
+    "apollo-link-context": "^1.0.19",
+    "apollo-link-error": "^1.1.12",
+    "apollo-link-http": "^1.5.16",
+    "classnames": "^2.2.6",
+    "graphql": "^14.5.8",
+    "history": "^4.10.1",
     "react": "^16.10.2",
+    "react-apollo": "^3.1.2",
     "react-dom": "^16.10.2",
-    "react-scripts": "3.2.0"
+    "react-material-ui-form-validator": "^2.0.9",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
