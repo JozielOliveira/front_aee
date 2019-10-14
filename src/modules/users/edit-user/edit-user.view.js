@@ -33,6 +33,7 @@ export const EditUserView =  ({
 
   useEffect(() => {
     if(user) setState({ ...state, ...user })
+    // eslint-disable-next-line
   }, [user])
 
   const classes = useStyles()
