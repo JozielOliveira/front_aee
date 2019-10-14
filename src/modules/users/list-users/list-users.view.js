@@ -19,7 +19,7 @@ import { Loading, FabAdd } from "../../../components"
 import { useStyles } from './styles'
 
 export const ListUsersView =  ({ 
-  getUsers: { loading, users }, 
+  getUsers: { loading, users, error }, 
   removeUser, 
   removeUserResult, 
   history 
@@ -30,7 +30,7 @@ export const ListUsersView =  ({
 
   const classes = useStyles()
   
-  if (loading || removeUserResult.loading)
+  if (loading || removeUserResult.loading || error)
     return <Loading />
   else
     return (

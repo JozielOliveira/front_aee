@@ -19,7 +19,7 @@ const logoutLink = onError(({ graphQLErrors, networkError }) => {
   }
   
   if (networkError)
-    console.log(`[Network error]: ${networkError}`);
+    store.dispatch(onOpenAlert('error', 'Erro na conexão'))
   
 })
 
