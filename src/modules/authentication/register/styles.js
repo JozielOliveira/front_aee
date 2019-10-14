@@ -6,25 +6,28 @@ export const useStyles = makeStyles(theme => ({
       backgroundColor: theme.palette.background,
     },
   },
-  title: {
-    marginBottom: theme.spacing(4),
-    fontSize: 48,
-    color: theme.palette.text.hint,
-    fontWeight: 'bold',
-    textAlign: 'center'
-  },
   layout: {
     borderRadius: theme.spacing(1),
     width: 'auto',
-    marginLeft: theme.spacing(3),
-    marginRight: theme.spacing(3),
-    marginBottom: theme.spacing(10)
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 360,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   paper: {
     borderRadius: theme.spacing(1),
     backgroundColor: theme.palette.background.paper,
-    marginBottom: theme.spacing(2),
-    padding: theme.spacing(1),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(3),
+    padding: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+      marginTop: theme.spacing(6),
+      marginBottom: theme.spacing(6),
+      padding: theme.spacing(3),
+    },
   },
   form: {
     margin: theme.spacing(2, 4),
