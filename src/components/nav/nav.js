@@ -14,7 +14,6 @@ export const Nav = ({ title, links, onLogout }) => {
     return (
       <AppBar
         position="fixed"
-        elevation={0}
         className={classes.appBar}
       >
         <Toolbar className={classes.toolbar}>
@@ -62,9 +61,6 @@ const useStyles = makeStyles(theme => ({
     li: {
       listStyle: 'none',
     },
-  },
-  appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
   },
   toolbar: {
     flexWrap: 'wrap',
