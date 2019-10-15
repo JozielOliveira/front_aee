@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { CssBaseline, Paper, Grid, Box, Button } from '@material-ui/core'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
-import { Loading } from "../../../components"
+import { Loading, Password } from "../../../components"
 import { isRequiredMessage, isEmail} from '../../../constants'
 import { useStyles } from './styles'
 
@@ -80,18 +80,9 @@ export const AddUserView =  ({ onAdd, onAddResult: { loading }, history }) => {
               required
               fullWidth
             />
-            <TextValidator
-              name="password"
-              label="Password"
+            <Password
               value={state.password}
-              type="password"
               onChange={handleChange('password')}
-              validators={['required']}
-              errorMessages={[ isRequiredMessage ]}
-              color="secondary"
-              margin="normal"
-              required
-              fullWidth
             />
             <Grid container spacing={2} justify="flex-end" >
               <Grid item>

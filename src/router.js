@@ -4,6 +4,9 @@ import { lazy } from 'react'
 const Login = lazy(() =>
   import('./modules/authentication/login/login.container')
 )
+const Register = lazy(() =>
+  import('./modules/authentication/register/register.container')
+)
 
 const ListUsers = lazy(() =>
   import('./modules/users/list-users/list-users.container')
@@ -16,7 +19,8 @@ const EditUser = lazy(() =>
 )
 
 export const routersAuth = [
-  { path: '/login', component: Login, exact: true },
+  { path: '/login', component: Login },
+  { path: '/register', component: Register },
 ]
 
 export const routersAuthenticated = [

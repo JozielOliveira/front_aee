@@ -27,7 +27,11 @@ export const useStyles = makeStyles(theme => ({
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
+      paddingBottom: theme.spacing(1)
     },
+  },
+  title: {
+    color: theme.palette.text.secondary,
   },
   form: {
     margin: theme.spacing(2, 4),

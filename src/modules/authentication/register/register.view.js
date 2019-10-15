@@ -3,28 +3,32 @@ import { CssBaseline, Grid, Paper, Box, Button } from '@material-ui/core'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
 import { Loading, Password } from '../../../components'
-import { isRequiredMessage, isEmail } from '../../../constants'
+import { isRequiredMessage, isEmail} from '../../../constants'
 import { useStyles } from './styles'
 
-export const LoginView =  ({ onLogin, onLoginResult, onSetAuthentication, history }) => {
-  const [state, setState] = useState({ email: '', password: '' })
+export const RegisterView =  ({ onRegister, onRegisterResult, onSetAuthentication, history }) => {
+  const [state, setState] = useState({
+    name: '',
+    email: '',
+    profession: '', 
+    password: '' 
+  })
 
   const handleChange = name => event => setState({ ...state, [name]: event.target.value})
 
-  const handleNavigateRegister = () => history.push('/register')
+  const handleNavigateGoBack = () => history.goBack()
 
   const handleSubmit = async event => {
     event.preventDefault()
     
-    const { email, password } = state
-    const data = await onLogin({ variables: { email, password }})
+    const data = await onRegister({ variables: { ...state }})
 
     if (data) onSetAuthentication()
   }
 
   const classes = useStyles()
   
-  if (onLoginResult.loading)
+  if (onRegisterResult.loading)
     return <Loading />
   else
     return (
@@ -32,13 +36,26 @@ export const LoginView =  ({ onLogin, onLoginResult, onSetAuthentication, histor
         <Paper className={classes.paper}>
           <CssBaseline />
           <Box textAlign="center" className={classes.title} fontWeight={600} fontSize={32} m={2}>
-            Entrar
+            Registrar-se
           </Box>
           <ValidatorForm
             className={classes.form}
             onSubmit={handleSubmit}
             onError={errors => console.log(errors)}
           >
+            <TextValidator
+              name="name"
+              label="Nome"
+              value={state.name}
+              onChange={handleChange('name')}
+              validators={['required']}
+              errorMessages={[isRequiredMessage]}
+              color="secondary"
+              margin="normal"
+              required
+              autoFocus
+              fullWidth
+            />
             <TextValidator
               name="email"
               label="Email"
@@ -49,7 +66,18 @@ export const LoginView =  ({ onLogin, onLoginResult, onSetAuthentication, histor
               color="secondary"
               margin="normal"
               required
-              autoFocus
+              fullWidth
+            />
+            <TextValidator
+              name="profession"
+              label="Profissão"
+              value={state.profession}
+              onChange={handleChange('profession')}
+              validators={['required']}
+              errorMessages={[isRequiredMessage]}
+              color="secondary"
+              margin="normal"
+              required
               fullWidth
             />
             <Password
@@ -64,17 +92,17 @@ export const LoginView =  ({ onLogin, onLoginResult, onSetAuthentication, histor
                   fullWidth
                   variant="contained"
                 >
-                  Entrar
+                  Registrar-se
                 </Button>
               </Grid>
               <Grid item xs={12}>
                 <Button
-                  onClick={handleNavigateRegister}
+                  onClick={handleNavigateGoBack}
                   color="primary"
                   fullWidth
                   size='small'
                 >
-                  Não sou cadastrado
+                  Voltar
                 </Button>
               </Grid>
             </Grid>

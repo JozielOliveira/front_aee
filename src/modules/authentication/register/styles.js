@@ -29,6 +29,9 @@ export const useStyles = makeStyles(theme => ({
       padding: theme.spacing(3),
     },
   },
+  title: {
+    color: theme.palette.text.secondary,
+  },
   form: {
     margin: theme.spacing(2, 4),
   },
