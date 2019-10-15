@@ -24,6 +24,11 @@ export const useStyles = makeStyles(theme => ({
       marginLeft: 'auto',
       marginRight: 'auto',
     },
+    [theme.breakpoints.up(800 + theme.spacing(2) * 2)]: {
+      maxWidth: 800,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
   },
   paper: {
     borderRadius: theme.spacing(1),
