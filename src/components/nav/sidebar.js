@@ -6,13 +6,11 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemIcon,
   ListItemText,
   Divider,
   useTheme,
-  Button
 } from '@material-ui/core'
-import { ChevronLeft, ChevronRight, Inbox, Mail } from '@material-ui/icons'
+import { ChevronLeft, ChevronRight } from '@material-ui/icons'
 
 export const SideBar = ({ open, onDrawerClose, links }) => {
   const theme = useTheme()
@@ -34,12 +32,6 @@ export const SideBar = ({ open, onDrawerClose, links }) => {
         </div>
         <Divider />
         <List>
-          {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <Inbox /> : <Mail />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
           {links.map(({ label, route }, index) => (
             <ListItem button key={label}>
               <NavLink

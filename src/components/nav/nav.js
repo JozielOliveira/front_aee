@@ -107,13 +107,13 @@ const useStyles = makeStyles(theme => ({
   },
   menuDesktop : {
     display: 'none',    
-    [theme.breakpoints.up(400 + theme.spacing(2) * 2)]: {
+    [theme.breakpoints.up(550 + theme.spacing(2) * 2)]: {
       display: 'block'
     },
   },
   menuMobile : {
     display: 'block',    
-    [theme.breakpoints.up(400 + theme.spacing(2) * 2)]: {
+    [theme.breakpoints.up(550 + theme.spacing(2) * 2)]: {
       display: 'none'
     },
   },
