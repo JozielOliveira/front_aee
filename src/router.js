@@ -18,6 +18,16 @@ const EditUser = lazy(() =>
   import('./modules/users/edit-user/edit-user.container')
 )
 
+const ListStudents = lazy(() =>
+  import('./modules/students/list-students/list-students.container')
+)
+const AddStudent = lazy(() =>
+  import('./modules/students/add-student/add-student.container')
+)
+const EditStudent = lazy(() =>
+  import('./modules/students/edit-student/edit-student.container')
+)
+
 export const routersAuth = [
   { path: '/login', component: Login },
   { path: '/register', component: Register },
@@ -28,7 +38,10 @@ export const routersAuthenticated = [
   { path: '/usuarios', component: ListUsers, exact: true },
   { path: '/usuario/adicionar', component: AddUser },
   { path: '/usuario/editar/:id', component: EditUser },
-  // { path: '/cotacoes', component: Quotation, exact: true },
+
+  { path: '/alunos', component: ListStudents, exact: true },
+  { path: '/aluno/adicionar', component: AddStudent },
+  { path: '/aluno/editar/:id', component: EditStudent },
   // { path: '/cotacoes/create', component: CreateQuotation },
   // { path: '/cotacoes/details', component: DetailsQuotation },
   // { path: '/pedidos', component: Request },

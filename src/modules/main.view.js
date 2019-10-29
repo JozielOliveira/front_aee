@@ -18,8 +18,8 @@ export const MainView = ({
       route: '/usuarios',
     },
     {
-      label: 'Estudantes',
-      route: '/estudantes',
+      label: 'Alunos',
+      route: '/alunos',
     },
     {
       label: 'Testes',
@@ -73,6 +73,6 @@ export const MainView = ({
 
 const useStyles = makeStyles(theme => ({
   container : {
-    marginTop: theme.spacing(10)
+    marginTop: theme.spacing(16)
   }
 }))
