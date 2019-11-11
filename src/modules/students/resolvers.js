@@ -17,13 +17,30 @@ export const GET_STUDENT = gql`
     student(id: $id) {
       id
       name
+      age
       gender
       date_birth
-      mother
-      father
-      address
       school
-      others
+    }
+  }
+`
+export const GET_REFERRAL = gql`
+  query ($id: String!){
+    formReferral(id: $id) {
+      title
+      steps
+    }
+  }
+`
+
+export const SAVE_REFERRAL = gql`
+  mutation saveReferral(
+    $id: String!,
+    $referral: JSON!
+  ){
+    saveReferral (id: $id,referral: $referral) {
+      id
+      name
     }
   }
 `
@@ -47,18 +64,16 @@ export const ADD_STUDENT = gql`
       school: $school,
       address: $address,
     ) {
+      id
       name
-      gender
       date_birth
-      mother
-      father
-      address
+      gender
       school
     }
   }
 `
 export const EDIT_STUDENT = gql`
-  mutation addStudent(
+  mutation editStudent(
     $id: String!,
     $name: String
     $email: String
