@@ -21,6 +21,13 @@ const EditUser = lazy(() =>
 const ListStudents = lazy(() =>
   import('./modules/students/list-students/list-students.container')
 )
+const Attend = lazy(() =>
+  import('./modules/students/attend/attend.container')
+)
+const Referral = lazy(() =>
+  import('./modules/students/referral/referral.container')
+)
+
 const AddStudent = lazy(() =>
   import('./modules/students/add-student/add-student.container')
 )
@@ -42,6 +49,8 @@ export const routersAuthenticated = [
   { path: '/alunos', component: ListStudents, exact: true },
   { path: '/aluno/adicionar', component: AddStudent },
   { path: '/aluno/editar/:id', component: EditStudent },
+  { path: '/aluno/atender/:id', component: Attend },
+  { path: '/encaminhamento/:id', component: Referral },
   // { path: '/cotacoes/create', component: CreateQuotation },
   // { path: '/cotacoes/details', component: DetailsQuotation },
   // { path: '/pedidos', component: Request },
