@@ -1,28 +1,15 @@
 import React, { useState } from 'react'
-import { CssBaseline, Paper, Box } from '@material-ui/core'
-import { ValidatorForm } from 'react-material-ui-form-validator'
 
-import { Loading } from "../../../components"
-import { useStyles } from './styles'
+import { Loading, FormWithSteppers } from "../../../components"
 
-import { FormInitial } from './steps/initial-registration'
-import { FormSchool } from './steps/school-registration'
-import { FormGuardian } from './steps/guardian-registration'
-import { FormAddress } from './steps/address-registration'
-import { Preview } from './steps/preview'
+import { FormInitial } from '../components/steps/initial-registration'
+import { FormSchool } from '../components/steps/school-registration'
+import { FormGuardian } from '../components/steps/guardian-registration'
+import { FormAddress } from '../components/steps/address-registration'
+import { Preview } from '../components/steps/preview'
 
-import { 
-  ProgressMobileStepper, 
-  ProgressDesktopStepper,
-  ProgressDesktopStepperBottom
-} from './components'
-
-const steps = ['Aluno', 'Escola', 'Responsáveis', 'Endereço']
 
 export const AddStudentView =  ({ onAdd, onAddResult: { loading }, history }) => {
-  // Steps
-  const [activeStep, setActiveStep] = React.useState(4)
-  const [completed, setCompleted] = React.useState(new Set());
   // Student Data
   const [state, setState] = useState({
     name: 'Joziel Oliveira Santos',
@@ -63,23 +50,6 @@ export const AddStudentView =  ({ onAdd, onAddResult: { loading }, history }) =>
   const handleChangeAddress = name => event =>
     setState({ ...state, address: { ...state.address, [name]: event.target.value} })
 
-  const handleNext = () => setActiveStep(prevActiveStep => prevActiveStep + 1)
-
-  const handleSubmit = async event => {
-    event.preventDefault()
-    if (activeStep === 4){
-      const data = await onAdd({ variables: { ...state }})
-      if (data) navigateGoBack()
-    } else {
-      const newCompleted = new Set(completed)
-      newCompleted.add(activeStep)
-      setCompleted(newCompleted)
-      handleNext()
-    }
-  }
-
-  const classes = useStyles()
-
   const stepForm = [
     <FormInitial 
       onChange={handleChange}
@@ -108,42 +78,11 @@ export const AddStudentView =  ({ onAdd, onAddResult: { loading }, history }) =>
     return <Loading />
   else
     return (
-      <main className={classes.layout}>
-        <CssBaseline />
-        <Paper className={classes.paper}>
-          <Box textAlign="center" className={classes.title} m={2}>
-            Novo aluno
-          </Box>
-          <ProgressDesktopStepper
-            steps={steps} 
-            activeStep={activeStep}
-            onSetActiveStep={setActiveStep} 
-            completed={completed}
-          />
-          <ValidatorForm
-            className={classes.form}
-            onSubmit={handleSubmit}
-            onError={errors => console.log(errors)}
-          >
-
-            {/* FORM */}
-            {stepForm[activeStep]}
-
-            {/* FOR MOBILE */}
-            <ProgressMobileStepper 
-              steps={steps.length} 
-              activeStep={activeStep}
-              onSetActiveStep={setActiveStep} 
-            />
-            
-            {/* FOR DESKTOP */}
-            <ProgressDesktopStepperBottom
-              steps={steps} 
-              activeStep={activeStep}
-              onSetActiveStep={setActiveStep} 
-            />
-          </ValidatorForm>
-        </Paper>
-      </main>
-  )
+      <FormWithSteppers
+        title="Novo aluno"
+        steps={['Aluno', 'Escola', 'Responsáveis', 'Endereço']}
+        forms={stepForm}
+        onAction={navigateGoBack}
+      />
+    )
 }
