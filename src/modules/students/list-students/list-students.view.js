@@ -5,32 +5,25 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  ListItemSecondaryAction,
   ListItemText,
   Avatar,
-  IconButton,
   Typography
 } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person'
-import DeleteIcon from '@material-ui/icons/Delete'
-import EditIcon from '@material-ui/icons/Edit'
 
 import { Loading, FabAdd } from "../../../components"
 import { useStyles } from './styles'
 
 export const ListStudentsView =  ({ 
-  getStudents: { loading, students, error }, 
-  removeStudent, 
-  removeStudentResult, 
+  getStudents: { loading, students, error },
   history 
 }) => {
   const navigateAdd = () => history.push(`/aluno/adicionar`)
-  const navigateEdit = id => () => history.push(`/aluno/editar/${id}`)
-  const handleRemove = id => () => removeStudent({ variables: { id }})
+  const navigateAttend = id => () => history.push(`/aluno/atender/${id}`)
 
   const classes = useStyles()
 
-  if (loading || removeStudentResult.loading || error)
+  if (loading || error)
     return <Loading />
   else
     return (
@@ -39,10 +32,10 @@ export const ListStudentsView =  ({
           <Typography className={classes.title}>Alunos</Typography>
           <List>
             {students.sort((a, b) => b.id - a.id ).map( student =>
-              <Paper key={student.id} className={classes.paper}>
+              <Paper key={student.id} className={classes.paper} onClick={navigateAttend(student.id)}>
                 <ListItem>
                   <ListItemAvatar>
-                    <Avatar>
+                    <Avatar style={{ background: student.gender === 'male' ? '#2196f380' :' #f5005780' }} >
                       <PersonIcon />
                     </Avatar>
                   </ListItemAvatar>
@@ -50,14 +43,6 @@ export const ListStudentsView =  ({
                     primary={student.name}
                     secondary={student.school.grade.toLocaleUpperCase()}
                   />
-                  <ListItemSecondaryAction>
-                    <IconButton onClick={navigateEdit(student.id)} edge="end">
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={handleRemove(student.id)} edge="end">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
                 </ListItem>
               </Paper>
             )}
