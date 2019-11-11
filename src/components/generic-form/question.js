@@ -60,6 +60,21 @@ export const Question = ({ titleForm, index, item, state, setState }) => {
           onChange={handleChange(index)}
         />
       )
+    case 'date':
+        return (
+          <TextValidator
+            name={item.name}
+            label={item.title}
+            value={item.value}
+            onChange={handleChange(index)}
+            type="date"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        )
     default:
       return (
         <TextValidator
