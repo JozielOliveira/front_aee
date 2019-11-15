@@ -2,11 +2,11 @@ import { AttendView } from './attend.view'
 // APOLLO GRAPHQL
 import { graphql } from 'react-apollo'
 import * as compose from 'lodash.flowright'
-import { GET_STUDENT } from '../resolvers'
+import { ATTEND } from '../resolvers'
 
 const AttendGraphQL = compose(
-  graphql(GET_STUDENT, {
-    name: 'getStudent',
+  graphql(ATTEND, {
+    name: 'getAttend',
     options: props => ({
       errorPolicy: 'all', 
       notifyOnNetworkStatusChange: true,

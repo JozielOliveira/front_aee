@@ -19,7 +19,7 @@ import { useStyles } from './styles'
 
 export const AttendView =  ({ 
   // onEdit, 
-  getStudent: { loading, student }, 
+  getAttend: { loading, attend }, 
   history, 
   match: { params: { id }} 
 }) => {
@@ -27,31 +27,19 @@ export const AttendView =  ({
     name: '',
     age: 0,
     gander: '',
-    school: {
-      grade: ''
-    }
+    grade: '',
+    flow: []
   })
 
-  // const navigateGoBack = () => history.push('/alunos')
-  const navigateReferral = () => history.push(`/encaminhamento/${id}`)
-
-  // const handleChange = name => event => setState({ ...state, [name]: event.target.value})
-
-  // const handleSubmit = async event => {
-  //   event.preventDefault()
-    
-  //   const data = await onEdit({ variables: { ...state, id }})
-
-  //   if (data) navigateGoBack()
-  // }
+  const navigateAction = route => () => history.push(`/${route}/${id}`)
 
   useEffect(() => {
-    if(student) setState({ ...state, ...student })
+    if(attend) setState({ ...state, ...attend })
     // eslint-disable-next-line
-  }, [student])
+  }, [attend])
 
   const classes = useStyles()
-  
+
   if (loading)
     return <Loading />
   else
@@ -68,7 +56,7 @@ export const AttendView =  ({
             justifyContent: 'center'
           }} >
             <Avatar style={{ 
-              background: student.gender === 'male' ? '#2196f380' :' #f5005780',
+              background: state.gender === 'male' ? '#2196f380' :' #f5005780',
               width: 48,
               height: 48,
             }} >
@@ -82,18 +70,18 @@ export const AttendView =  ({
             <Field label="Idade" text={state.age} />
           </Grid>
           <Grid item>
-            <Field label="Série" text={state.school.grade.toLocaleUpperCase()} />
+            <Field label="Série" text={state.grade.toLocaleUpperCase()} />
           </Grid>
         </Grid>
         <Box className={classes.flow} m={2}>
           Fluxo
         </Box>
         <List>
-          {flow.map( student =>
+          {state.flow.map( (step, index) =>
             <Paper 
-              key={student.id} 
-              className={classnames(classes.paper, student.disabled && classes.itemDisabled)}
-              onClick={!student.disabled && navigateReferral}
+              key={index} 
+              className={classnames(classes.paper, !step.status && classes.itemDisabled)}
+              onClick={step.status ? navigateAction(step.route) : () => {}}
             >
               <ListItem>
                 <ListItemAvatar>
@@ -102,7 +90,7 @@ export const AttendView =  ({
                   </Avatar>
                 </ListItemAvatar>
                 <ListItemText
-                  primary={student.name}
+                  primary={step.title}
                 />
               </ListItem>
             </Paper>
@@ -114,21 +102,3 @@ export const AttendView =  ({
       </main>
   )
 }
-
-const flow = [
-  {
-    id: "1",
-    name: 'Encaminhamento',
-    disabled: false
-  },
-  {
-    id: "2",
-    name: 'Anamnese',
-    disabled: true
-  },
-  {
-    id: "3",
-    name: 'Testes',
-    disabled: true
-  },
-]

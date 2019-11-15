@@ -24,6 +24,19 @@ export const GET_STUDENT = gql`
     }
   }
 `
+
+export const ATTEND = gql`
+  query ($id: String!){
+    attend(id: $id) {
+      name
+      age
+      gender
+      grade
+      flow
+    }
+  }
+`
+
 export const GET_REFERRAL = gql`
   query ($id: String!){
     formReferral(id: $id) {
@@ -39,6 +52,27 @@ export const SAVE_REFERRAL = gql`
     $referral: JSON!
   ){
     saveReferral (id: $id,referral: $referral) {
+      id
+      name
+    }
+  }
+`
+
+export const GET_ANAMNESE = gql`
+  query ($id: String!){
+    formAnamnese(id: $id) {
+      title
+      steps
+    }
+  }
+`
+
+export const SAVE_ANAMNESE = gql`
+  mutation saveAnamnese(
+    $id: String!,
+    $anamnese: JSON!
+  ){
+    saveAnamnese (id: $id, anamnese: $anamnese) {
       id
       name
     }
