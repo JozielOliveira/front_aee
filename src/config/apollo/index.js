@@ -6,7 +6,7 @@ import { store } from '../redux/store'
 import { onOpenAlert } from '../../modules/main.state'
 import { ApolloLink, from } from 'apollo-link'
 
-const httpLink = new HttpLink({ uri: 'http://localhost:4000/graphql' })
+const httpLink = new HttpLink({ uri: 'https://api-aslave-dev.herokuapp.com/graphql' })
 
 const logoutLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
