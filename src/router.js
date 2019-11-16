@@ -34,9 +34,6 @@ const Anamnese = lazy(() =>
 const AddStudent = lazy(() =>
   import('./modules/students/add-student/add-student.container')
 )
-const EditStudent = lazy(() =>
-  import('./modules/students/edit-student/edit-student.container')
-)
 
 export const routersAuth = [
   { path: '/login', component: Login },
@@ -51,7 +48,6 @@ export const routersAuthenticated = [
 
   { path: '/alunos', component: ListStudents, exact: true },
   { path: '/aluno/adicionar', component: AddStudent },
-  { path: '/aluno/editar/:id', component: EditStudent },
   { path: '/aluno/atender/:id', component: Attend },
   { path: '/encaminhamento/:id', component: Referral },
   { path: '/anamnese/:id', component: Anamnese },
