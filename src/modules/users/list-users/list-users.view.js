@@ -9,14 +9,13 @@ import {
   ListItemText,
   Avatar,
   IconButton,
-  Typography
 } from '@material-ui/core'
 import PersonIcon from '@material-ui/icons/Person'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 
-import { Loading, FabAdd } from "../../../components"
-import { useStyles } from './styles'
+import { Loading, Title, FabAdd } from "../../../components"
+import { useStyles } from '../styles'
 
 export const ListUsersView =  ({ 
   getUsers: { loading, users, error }, 
@@ -36,7 +35,7 @@ export const ListUsersView =  ({
     return (
       <main className={classes.layout}>
           <CssBaseline />
-          <Typography className={classes.title}>Usuários</Typography>
+          <Title>Usuários</Title>
           <List>
             {users.sort((a, b) => b.id - a.id ).map( user =>
               <Paper key={user.id} className={classes.paper}>

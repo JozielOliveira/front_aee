@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { CssBaseline, Paper, Grid, Box, Button } from '@material-ui/core'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
-import { Loading } from "../../../components"
-import { isRequiredMessage, isEmail} from '../../../constants'
-import { useStyles } from './styles'
+import { Loading, Title } from "../../../components"
+import { isRequiredMessage, isEmail } from '../../../constants'
+import { useStyles } from '../add-user/styles'
 
 export const EditUserView =  ({ 
   onEdit, 
@@ -43,11 +43,11 @@ export const EditUserView =  ({
   else
     return (
       <main className={classes.layout}>
+        <CssBaseline />
+        <Title>
+          Novo usuário
+        </Title>
         <Paper className={classes.paper}>
-          <CssBaseline />
-          <Box textAlign="center" fontWeight={600} fontSize={32} m={2}>
-            Novo usuário
-          </Box>
           <ValidatorForm
             className={classes.form}
             onSubmit={handleSubmit}

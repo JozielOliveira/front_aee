@@ -4,7 +4,7 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
 import { Loading, Password } from '../../../components'
 import { isRequiredMessage, isEmail } from '../../../constants'
-import { useStyles } from './styles'
+import { useStyles } from '../styles'
 
 export const LoginView =  ({ onLogin, onLoginResult, onSetAuthentication, history }) => {
   const [state, setState] = useState({ email: '', password: '' })
