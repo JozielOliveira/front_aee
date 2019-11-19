@@ -72,6 +72,11 @@ export const MainView = ({
 }
 
 const useStyles = makeStyles(theme => ({
+  '@global': {
+    body: {
+      backgroundColor: theme.palette.background,
+    },
+  },
   container : {
     marginTop: theme.spacing(16)
   }
