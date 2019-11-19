@@ -20,27 +20,23 @@ export class CheckboxGroupValidator extends ValidatorComponent {
     }
 
     render() {
-        const { label } = this.props
-        const { isValid } = this.state
-
         return (
           <FormControl 
-            error={!isValid}
+            error={!this.state.isValid}
             component="fieldset" 
             ref={(r) => { this.input = r }}
           >
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel component="legend">{this.props.label}</FormLabel>
             <FormGroup>
-              {this.props.checks.map( (elem, index) =>
+              {this.props.checks.map((elem, index) =>
                 <FormControlLabel
                   key={index}
                   label={elem.label}
                   control={
-                    <Checkbox 
+                    <Checkbox
                       color="primary"
                       checked={elem.value} 
-                      onChange={this.props.onChange(elem.name)} 
-                      value={elem.value} 
+                      onChange={this.props.onChange(elem.name)}
                     />
                   }
                 />
