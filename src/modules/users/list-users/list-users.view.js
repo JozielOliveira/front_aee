@@ -1,8 +1,6 @@
 import React from 'react'
 import { 
-  CssBaseline, 
   Paper,
-  List,
   ListItem,
   ListItemAvatar,
   ListItemSecondaryAction,
@@ -14,7 +12,7 @@ import PersonIcon from '@material-ui/icons/Person'
 import DeleteIcon from '@material-ui/icons/Delete'
 import EditIcon from '@material-ui/icons/Edit'
 
-import { Loading, Title, FabAdd } from "../../../components"
+import { ScaffoldList } from "../../../components"
 import { useStyles } from '../styles'
 
 export const ListUsersView =  ({ 
@@ -29,39 +27,37 @@ export const ListUsersView =  ({
 
   const classes = useStyles()
   
-  if (loading || removeUserResult.loading || error)
-    return <Loading />
-  else
-    return (
-      <main className={classes.layout}>
-          <CssBaseline />
-          <Title>Usuários</Title>
-          <List>
-            {users.sort((a, b) => b.id - a.id ).map( user =>
-              <Paper key={user.id} className={classes.paper}>
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <PersonIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={user.name}
-                    secondary={user.email}
-                  />
-                  <ListItemSecondaryAction>
-                    <IconButton onClick={navigateEdit(user.id)} edge="end">
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={handleRemove(user.id)} edge="end">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              </Paper>
-            )}
-          </List>
-          <FabAdd onClick={navigateAdd} />
-      </main>
+  return (
+    <ScaffoldList
+      title="Usuários" 
+      isError={error}
+      isLoading={loading || removeUserResult.loading}
+      onClickFabAdd={navigateAdd}
+      data={users}
+      onSort={(a, b) => b.id - a.id}
+      listItem={ user =>
+        <Paper key={user.id} className={classes.paper}>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <PersonIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={user.name}
+              secondary={user.email}
+            />
+            <ListItemSecondaryAction>
+              <IconButton onClick={navigateEdit(user.id)} edge="end">
+                <EditIcon />
+              </IconButton>
+              <IconButton onClick={handleRemove(user.id)} edge="end">
+                <DeleteIcon />
+              </IconButton>
+            </ListItemSecondaryAction>
+          </ListItem>
+        </Paper>
+      }
+    />
   )
 }
