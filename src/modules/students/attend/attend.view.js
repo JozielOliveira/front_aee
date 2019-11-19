@@ -47,7 +47,7 @@ export const AttendView =  ({
       <main className={classes.layout}>
         <CssBaseline />
         <Box textAlign="center" className={classes.title} m={2}>
-          Atender aluno
+          Atendimento
         </Box>
         <Grid container spacing={2} style={{ marginBottom: 40 }}>
           <Grid item xs={12} sm={2} style={{
